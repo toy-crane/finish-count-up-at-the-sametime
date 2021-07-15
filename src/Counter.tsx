@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 interface Props {
-	number: number;
+	endNum: number;
 }
 
 // 애니메이션이 지속될 시간
@@ -26,32 +26,19 @@ const calNumAtFrame = (endNumber: number, frame: number) => {
 	return Math.floor(numAtFrame);
 };
 
-const Counter = ({ number }: Props) => {
+const Count = ({ endNum }: Props) => {
 	const [frame, setFrame] = useState<number>(1);
-	const numberToShow = calNumAtFrame(number, frame);
+	const number = calNumAtFrame(endNum, frame);
 
 	useEffect(() => {
 		let id: any;
-		// 원하는 숫자에 도달 했을 때, Interval을 더이상 추가하지 않는다.
-		if (numberToShow < number) {
+		if (number < endNum) {
 			id = setInterval(() => setFrame((frame) => frame + 1), INTERVAL);
 		}
 		return () => id && clearInterval(id);
 	});
 
-	return <div>{numberToShow}</div>;
+	return <div>{number}</div>;
 };
 
-function App() {
-	return (
-		<div className="App">
-			<Counter number={500}></Counter>
-			<Counter number={400}></Counter>
-			<Counter number={300}></Counter>
-			<Counter number={200}></Counter>
-			<Counter number={100}></Counter>
-		</div>
-	);
-}
-
-export default App;
+export default Count;

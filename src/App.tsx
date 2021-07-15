@@ -17,7 +17,7 @@ const calNumAtFrame = (endNumber: number, frame: number) => {
 		throw new Error("애니메이션 시간보다 클 수 없습니다.");
 	}
 
-	// (0, 0) (endNumber, Duration) 사이의 이차 방정식 중간 계수를 구한다.
+	// (0, 0), (endNumber, Duration) 사이의 이차 방정식 중간 계수를 구한다.
 	const calQuadricVariable = (endNumber * -1) / Math.pow(DURATION, 2);
 
 	// 이차 방정식을 활용해서 실제로 화면에 표현될 숫자를 구한다.
